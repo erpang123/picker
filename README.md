@@ -1,5 +1,4 @@
 # 模仿ios中的select效果制作的一个滚轮插件
-<<<<<<< HEAD
 通过var pricker1 = new pricker(d, nav_list, data, 30);实例化一个对象，传入三个参数分别：<br/>
 d：触发插件的dom节点。<br/>
 nav-list：为select框所在的dom节点。<br/>
@@ -49,4 +48,3 @@ var pricker1 = new pricker(d, nav_list, data, 30);
 ```
 ## 效果：
   ![](https://github.com/erpang123/pricker-dmeo/raw/master/Screenshots/pricker.png)
->>>>>>> develop
