@@ -4,7 +4,7 @@ d：select中选中的文本显示的dom节点。<br/>
 nav-list：为select框所在的dom节点。<br/>
 data: select中的数据。<br/>
 30：为两个option的高度。（现阶段提供三个参数）。<br/>
-案例：
+## 案例：
 ```html
 <div class="demo1">
 	<div id="dom"></div>
@@ -20,5 +20,5 @@ var data = ['2017-08-23','2017-08-24','2017-08-25','2017-08-26','2017-08-27','20
 var pricker1 = new pricker(d, nav_list, data, 30);
 </script>
 ```
-效果：
+## 效果：
   ![](https://github.com/erpang123/pricker-dmeo/raw/master/Screenshots/pricker.png)
