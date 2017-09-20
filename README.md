@@ -9,7 +9,7 @@ data: select中的数据。<br/>
 * html
 ```html
 <div class="demo1">
-	<div id="dom" data-value="2017-08-16"></div>
+	<div id="dom" data-value="2017-08-26"></div>
 	<div class="nav-list" id="nav-list" style="top:100px;left:50px;">
 	</div>
 </div>
