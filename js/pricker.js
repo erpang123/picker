@@ -34,7 +34,8 @@ pricker.prototype.showTime = function () {
 		li_info.push('<li class="visible" style="transform: rotateX('+rtx+'deg) translateZ(100px);-webkit-transform: rotateX('+rtx+'deg) translateZ(100px);">'+data[j]+'</li>');
 	}
 	for(var l in data) {
-		if (l < (gold_i-3) || l > parseInt(gold_i+3)) {
+		if (l < (gold_i-3) || l > (parseInt(gold_i)+3)) {
+
 			li_info[l] = '<li class="li-height visible hide" style="transform: rotateX('+rtx+'deg) translateZ(100px);-webkit-transform: rotateX('+(-li_h)*l+'deg) translateZ(100px);">'+data[l]+'</li>'
 		}
 	}
