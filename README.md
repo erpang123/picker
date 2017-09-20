@@ -5,11 +5,11 @@ nav-list：为select框所在的dom节点。
 data: select中的数据。
 30：为两个option的高度。（现阶段提供三个参数）。
 案例：
-  <div class="demo1">
-		<div id="dom"></div>
+<div class="demo1">
+	<div id="dom"></div>
 		<div class="nav-list" id="nav-list" style="top:100px;left:50px;">
-		</div>
 	</div>
+</div>
   <script>
     var d = document.getElementById('dom');
     var nav_list = document.getElementById('nav-list');
@@ -17,4 +17,4 @@ data: select中的数据。
     var pricker1 = new pricker(d, nav_list, data, 30);
   </script>
   效果：
-  
+  ![Alt text](https://github.com/erpang123/pricker-dom/master/Screenshots/pricker.png)
