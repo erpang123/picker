@@ -6,4 +6,4 @@ li{height:36px;line-height: 36px;box-sizing: border-box;list-style: none;text-al
 }
 .hide{visibility: hidden !important;}
 .visible{visibility: visible;}
-.nav-list{position: absolute;width: 100px;height:300px;overflow:hidden;}
+.nav-list{position: absolute;width: 100%;height:100%;overflow:hidden;}

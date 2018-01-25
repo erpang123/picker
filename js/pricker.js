@@ -131,8 +131,8 @@ pricker.prototype.setTime = function () {
 	function rollGear (e) {
 		var d = 0;
 		var text = '';
-		clearInterval(t);
-		t = setInterval(function(){
+		// clearInterval(t);
+		function aa() {
 			var data_value = parseInt(ul_name.getAttribute('data-value'));
 			var speed = golb_speed * Math.exp(-0.03 * d);//e的-0.03*d次幂，速度不断减小
 			data_value += speed*-li_h;//根据速度设置旋转量，随着速度的递减，旋转角度减小并停止
@@ -140,17 +140,17 @@ pricker.prototype.setTime = function () {
 			var i = Math.floor(data_value/li_h);//根据（旋转角度/初始旋转角度）获取第几个元素选中
 			addClass(i);
 			if (i>=(lis.length+2)) {
-				clearInterval(t);
+				// clearInterval(t);
 				speed = 0;
 			}
 			if(i<=-2){
-				clearInterval(t);
+				// clearInterval(t);
 				speed = 0;
 			}
 			if (Math.abs(speed) > 0.1) {
-
+				requestAnimationFrame(aa);
             } else {
-                clearInterval(t);
+                // clearInterval(t);
                 ul_name.style.transitionDuration = '0.2s';
                 ul_name.style.webkitTransitionDuration = '0.2s';
 				if (i >= lis.length-1) {
@@ -185,7 +185,8 @@ pricker.prototype.setTime = function () {
 			ul_name.style.webkitTransform = 'rotateX(' +data_value+ 'deg)';
 			ul_name.setAttribute('data-value', data_value);
 			d++;
-		},30);
+		}
+		requestAnimationFrame(aa);
 	}
 }
 pricker.prototype.showDom = function (i) {

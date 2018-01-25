@@ -6,28 +6,114 @@
     <title></title>
 	<script type="text/javascript" src="js/pricker.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/pricker.css"/>
+	<style type="text/css">
+		.time-dom-list{
+			display: flex;
+			align-items: center;
+			padding: 0 12px;
+			margin: 0;
+			border-bottom: 1px solid #e6e6e6;
+		}
+		.time-dom-list p {
+			font-size: 14px;
+		}
+		.t-r{
+			text-align: right;
+		}
+		.flex-1{
+			flex-grow: 1;
+		}
+		.c1{
+			color: #999;
+		}
+		.demo1{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 0;
+			transition: height 0.5s;
+			overflow: hidden;
+			box-shadow: 0 -1px 5px #ccc;
+			z-index: 11;
+			background: #fff;
+		}
+		.demo1.checkBool{
+			height: 240px;
+		}
+		.demo1 .nav-list{
+			position: relative;
+			height: 200px;
+		}
+		.title{
+			position: relative;
+			padding: 10px 12px;
+			text-align: center;
+			border-bottom: 1px solid #e6e6e6;
+		}
+		.t-Close{
+			background: url(image/Close.png) center no-repeat;
+			background-size: contain;
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			left: 12px;
+		}
+		.mask{
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: #000;
+			opacity: 0.6;
+			z-index: 10;
+		}
+	</style>
 </head>
 <body>
+	<div class="time-dom-list">
+		<p>时间</p>
+		<p class="flex-1 t-r c1" id='dom' onclick="checkTime()">请选择时间</p>
+	</div>
 	<div class="demo1">
-		<div id="dom"></div>
-		<div class="nav-list" style="top:100px;left:50px;">
+		<div class="title">
+			<i class="t-Close" onclick="hideCheckTime()"></i>
+			<label>时间选择器</label>
+		</div>
+		<div class="nav-list" id='nav-list'>
 		</div>
 	</div>
-	<div class="demo2">
+	<!-- <div class="demo2">
 		<div id="dom1"></div>
 		<div class="nav-list" style="top:100px;left:250px;">
 		</div>
-	</div>
+	</div> -->
 	<script type="text/javascript">
 		/*多个select*/
 		var d = document.getElementById('dom');
-		var nav_list =document.getElementsByClassName('nav-list')[0];
+		var nav_list =document.getElementById('nav-list');
 		var data = ['2017-08-23','2017-08-24','2017-08-25','2017-08-26','2017-08-27','2017-08-28','2017-08-29','2017-08-30','2017-08-31','2017-09-01','2017-09-02','2017-09-03','2017-09-04','2017-09-05','2017-09-06','2017-09-07','2017-09-08','2017-09-09','2017-09-10','2017-09-11','2017-09-12','2017-09-13','2017-09-14','2017-09-15','2017-09-16','2017-09-17','2017-09-18','2017-09-19']
-		var pricker1 = new pricker(d, nav_list, data, 30);
+		var pricker1 = new pricker(d, nav_list, data);
 
-		var d1 = document.getElementById('dom1');
-		var nav_list1 =document.getElementsByClassName('nav-list')[1];
-		var pricker2 = new pricker(d1, nav_list1);
+		function checkTime () {
+			var div = document.createElement('div');
+			div.className = 'mask';
+			document.body.appendChild(div);
+			div.setAttribute('onclick', 'hideCheckTime()');
+			document.querySelector('.demo1').classList.add('checkBool');
+		}
+		function hideCheckTime () {
+			document.querySelector('.demo1').classList.remove('checkBool');
+			document.querySelector('.demo1').addEventListener('webkitTransitionEnd', transtionEnd)
+		}
+		function transtionEnd() {
+			document.body.removeChild(document.querySelector('.mask'));
+			document.querySelector('.demo1').removeEventListener('webkitTransitionEnd', transtionEnd);
+		}
+		// var d1 = document.getElementById('dom1');
+		// var nav_list1 =document.getElementsByClassName('nav-list')[1];
+		// var pricker2 = new pricker(d1, nav_list1);
 	</script>
 </body>
 </html>
