@@ -1,5 +1,5 @@
-function pricker (t, dom, data, li_h) {
-	this.checkedDom = t;
+function pricker (dom, data, li_h) {
+	this.checkedDom = dom;
 	this.prickerDom = dom;
 	this.data = data || [0,1000,2000,3000,4000,5000,6000,8000,9000,10000,15000,20000,25000,30000,35000,40000,45000,50000,55000,60000,65000,70000];
 	this.li_h = li_h || 20;
@@ -131,7 +131,6 @@ pricker.prototype.setTime = function () {
 	function rollGear (e) {
 		var d = 0;
 		var text = '';
-		// clearInterval(t);
 		function aa() {
 			var data_value = parseInt(ul_name.getAttribute('data-value'));
 			var speed = golb_speed * Math.exp(-0.03 * d);//e的-0.03*d次幂，速度不断减小
@@ -140,17 +139,14 @@ pricker.prototype.setTime = function () {
 			var i = Math.floor(data_value/li_h);//根据（旋转角度/初始旋转角度）获取第几个元素选中
 			addClass(i);
 			if (i>=(lis.length+2)) {
-				// clearInterval(t);
 				speed = 0;
 			}
 			if(i<=-2){
-				// clearInterval(t);
 				speed = 0;
 			}
 			if (Math.abs(speed) > 0.1) {
 				requestAnimationFrame(aa);
             } else {
-                // clearInterval(t);
                 ul_name.style.transitionDuration = '0.2s';
                 ul_name.style.webkitTransitionDuration = '0.2s';
 				if (i >= lis.length-1) {
@@ -180,7 +176,7 @@ pricker.prototype.setTime = function () {
             }
             _that.showDom(i);
             _this.setAttribute('data-value', text);
-            _this.innerHTML = text;
+            // _this.innerHTML = text;
 			ul_name.style.transform = 'rotateX(' +data_value+ 'deg)';
 			ul_name.style.webkitTransform = 'rotateX(' +data_value+ 'deg)';
 			ul_name.setAttribute('data-value', data_value);

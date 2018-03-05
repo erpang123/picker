@@ -59,6 +59,14 @@
 			height: 20px;
 			left: 12px;
 		}
+		.t-Check{
+			background: url(image/check.png) center no-repeat;
+			background-size: contain;
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			right: 12px;
+		}
 		.mask{
 			position: fixed;
 			top: 0;
@@ -69,51 +77,104 @@
 			opacity: 0.6;
 			z-index: 10;
 		}
+		.flex{
+			display: flex;
+		}
+		.flex-1{
+			flex-grow: 1;
+		}
 	</style>
 </head>
 <body>
 	<div class="time-dom-list">
-		<p>时间</p>
-		<p class="flex-1 t-r c1" id='dom' onclick="checkTime()">请选择时间</p>
+		<p>一栏</p>
+		<p class="flex-1 t-r c1" id='dom' onclick="checkTime('demo1', this)">请选择时间</p>
 	</div>
-	<div class="demo1">
+	<div class="time-dom-list">
+		<p>两栏</p>
+		<p class="flex-1 t-r c1" id='dom1' onclick="checkTime('demo2', this)">请选择时间</p>
+	</div>
+	<div class="demo1" id='demo1'>
 		<div class="title">
 			<i class="t-Close" onclick="hideCheckTime()"></i>
 			<label>时间选择器</label>
+			<i class="t-Check" onclick="getCheckTime(this)"></i>
 		</div>
-		<div class="nav-list" id='nav-list'>
+		<div>
+			<div class="nav-list" id='nav-list'>
+			</div>
 		</div>
 	</div>
-	<!-- <div class="demo2">
-		<div id="dom1"></div>
-		<div class="nav-list" style="top:100px;left:250px;">
+	<div class="demo1" id='demo2'>
+		<div class="title">
+			<i class="t-Close" onclick="hideCheckTime()"></i>
+			<label>时间选择器</label>
+			<i class="t-Check" onclick="getCheckTime(this)"></i>
 		</div>
-	</div> -->
+		<div class="flex">
+			<div class="nav-list flex-1" id='nav-list1'>
+			</div>
+			<div class="nav-list flex-1" id='nav-list2'>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
+		var data = ['2017-08-23','2017-08-24','2017-08-25','2017-08-26','2017-08-27','2017-08-28','2017-08-29','2017-08-30','2017-08-31','2017-09-01','2017-09-02','2017-09-03','2017-09-04','2017-09-05','2017-09-06','2017-09-07','2017-09-08','2017-09-09','2017-09-10','2017-09-11','2017-09-12','2017-09-13','2017-09-14','2017-09-15','2017-09-16','2017-09-17','2017-09-18','2017-09-19'];
 		/*多个select*/
-		var d = document.getElementById('dom');
 		var nav_list =document.getElementById('nav-list');
-		var data = ['2017-08-23','2017-08-24','2017-08-25','2017-08-26','2017-08-27','2017-08-28','2017-08-29','2017-08-30','2017-08-31','2017-09-01','2017-09-02','2017-09-03','2017-09-04','2017-09-05','2017-09-06','2017-09-07','2017-09-08','2017-09-09','2017-09-10','2017-09-11','2017-09-12','2017-09-13','2017-09-14','2017-09-15','2017-09-16','2017-09-17','2017-09-18','2017-09-19']
-		var pricker1 = new pricker(d, nav_list, data);
+		new pricker(nav_list, data);
 
-		function checkTime () {
+		var nav_list1 =document.getElementById('nav-list1');
+		new pricker(nav_list1, data);
+
+		var nav_list2 =document.getElementById('nav-list2');
+		new pricker(nav_list2, data);
+
+
+		var setTimeDom = '';
+		function checkTime (id, _this) {
+			setTimeDom = _this;
 			var div = document.createElement('div');
 			div.className = 'mask';
 			document.body.appendChild(div);
-			div.setAttribute('onclick', 'hideCheckTime()');
-			document.querySelector('.demo1').classList.add('checkBool');
+			div.setAttribute('onclick', 'hideCheckTime('+id+')');
+			document.querySelector('#' + id).classList.add('checkBool');
 		}
-		function hideCheckTime () {
-			document.querySelector('.demo1').classList.remove('checkBool');
-			document.querySelector('.demo1').addEventListener('webkitTransitionEnd', transtionEnd)
+		function hideCheckTime (id) {
+			id.classList.remove('checkBool');
+			id.addEventListener('webkitTransitionEnd', transtionEnd(id))
 		}
-		function transtionEnd() {
+		function transtionEnd (id) {
 			document.body.removeChild(document.querySelector('.mask'));
-			document.querySelector('.demo1').removeEventListener('webkitTransitionEnd', transtionEnd);
+			id.removeEventListener('webkitTransitionEnd', transtionEnd);
 		}
-		// var d1 = document.getElementById('dom1');
-		// var nav_list1 =document.getElementsByClassName('nav-list')[1];
-		// var pricker2 = new pricker(d1, nav_list1);
+		function getCheckTime (_this) {
+			var doms = siblingsNode(_this.parentNode);
+			var data = [];
+			console.log(doms)
+			for (var i = 0; i < doms.length; i++) {
+				var list = doms[i].childNodes;
+				for (var j = 0; j < list.length; j++) {
+					var type = list[j].nodeType;
+					if (type == 1) {
+						data.push(list[j].getAttribute('data-value'))
+					}
+				}
+			}
+			setTimeDom.innerText = data.join('-')
+			hideCheckTime(_this.parentNode.parentNode);
+		}
+		function siblingsNode(dom){
+			var childNodes = dom.parentNode.childNodes;
+			var siblingsNode = [];
+			for (var i = 0; i < childNodes.length; i++) {
+				var type = childNodes[i].nodeType;
+				if (type == 1 && dom !== childNodes[i]) {
+					siblingsNode.push(childNodes[i])
+				}
+			}
+			return siblingsNode;
+		}
 	</script>
 </body>
 </html>
