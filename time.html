@@ -101,7 +101,7 @@
 			<i class="t-Check" onclick="getCheckTime(this)"></i>
 		</div>
 		<div>
-			<div class="nav-list" id='nav-list'>
+			<div class="nav-list" id='nav-list' data-value="2017-08-26">
 			</div>
 		</div>
 	</div>
@@ -151,7 +151,6 @@
 		function getCheckTime (_this) {
 			var doms = siblingsNode(_this.parentNode);
 			var data = [];
-			console.log(doms)
 			for (var i = 0; i < doms.length; i++) {
 				var list = doms[i].childNodes;
 				for (var j = 0; j < list.length; j++) {

@@ -55,10 +55,11 @@ pricker.prototype.setTime = function () {
 	var parent = this.prickerDom;
 	var _this = this.checkedDom;
 	var dom = parent.getElementsByClassName('time-picker')[0];
-	var first_y = 0;//点击时在屏幕y轴的坐标
-	var data_value = 0;//初始旋转角度为0
-	var dom_bool = false;
-	var li_h = this.li_h;//旋转的角度间隔为20deg
+	var first_y = 0;			//点击时在屏幕y轴的坐标
+	var data_value = 0;			//初始旋转角度为0
+	var dom_bool = false;		//是否按下
+	var stopDown = true; 		//是否停止滚动
+	var li_h = this.li_h;		//旋转的角度间隔为20deg
 	var lis = parent.getElementsByClassName('time-list')[0].getElementsByTagName('li');
 	var ul_name = parent.getElementsByClassName('time-list')[0];
 	var firstmoveTime = 0;//按下是的时间
@@ -74,7 +75,7 @@ pricker.prototype.setTime = function () {
 		ul_name.style.webkitTransitionDuration = '0s';
 	});
 	document.addEventListener('touchmove',function(event){
-		if (dom_bool) {
+		if (dom_bool && stopDown) {
 			removeClass();
 			lastmoveTime = event.timeStamp;
 			var Y = event.touches[0].clientY;//存储移动时的Y轴坐标
@@ -102,8 +103,9 @@ pricker.prototype.setTime = function () {
 		}
 	});
 	document.addEventListener('touchend',function(e){
-		if(dom_bool){
+		if(dom_bool && stopDown){
 			dom_bool = false;
+			stopDown = false
 			var speed = (lastY - first_y)/(lastmoveTime - firstmoveTime);//平均速度
 			if (Math.abs(speed) <= 0.4) {//根据不同的平均速度设置点触结束后的速度
                 golb_speed = (speed < 0 ? -0.08 : 0.08);
@@ -133,10 +135,10 @@ pricker.prototype.setTime = function () {
 		var text = '';
 		function aa() {
 			var data_value = parseInt(ul_name.getAttribute('data-value'));
-			var speed = golb_speed * Math.exp(-0.03 * d);//e的-0.03*d次幂，速度不断减小
-			data_value += speed*-li_h;//根据速度设置旋转量，随着速度的递减，旋转角度减小并停止
+			var speed = golb_speed * Math.exp(-0.03 * d);			//e的-0.03*d次幂，速度不断减小
+			data_value += speed*-li_h;								//根据速度设置旋转量，随着速度的递减，旋转角度减小并停止
 			removeClass();
-			var i = Math.floor(data_value/li_h);//根据（旋转角度/初始旋转角度）获取第几个元素选中
+			var i = Math.floor(data_value/li_h);					//根据（旋转角度/初始旋转角度）获取第几个元素选中
 			addClass(i);
 			if (i>=(lis.length+2)) {
 				speed = 0;
@@ -147,6 +149,7 @@ pricker.prototype.setTime = function () {
 			if (Math.abs(speed) > 0.1) {
 				requestAnimationFrame(aa);
             } else {
+            	stopDown = true;
                 ul_name.style.transitionDuration = '0.2s';
                 ul_name.style.webkitTransitionDuration = '0.2s';
 				if (i >= lis.length-1) {
@@ -176,7 +179,6 @@ pricker.prototype.setTime = function () {
             }
             _that.showDom(i);
             _this.setAttribute('data-value', text);
-            // _this.innerHTML = text;
 			ul_name.style.transform = 'rotateX(' +data_value+ 'deg)';
 			ul_name.style.webkitTransform = 'rotateX(' +data_value+ 'deg)';
 			ul_name.setAttribute('data-value', data_value);
