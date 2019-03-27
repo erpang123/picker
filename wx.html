@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>微信中web-view</title>
+</head>
+<body>
+	<button onclick="returnWx()">返回微信小程序</button>>
+	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+	<script type="text/javascript">
+		function returnWx () {
+			wx.miniProgram.redirectTo({
+				url: '/pages/index/index'
+			})
+		}
+	</script>
+</body>
+</html>
