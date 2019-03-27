@@ -2,7 +2,7 @@
 因公司需要自己写的一个模仿ios中的select效果制作的一个滚轮插件
 
 # 演示
-[查看演示效果](https://erpang123.github.io/pricker/time.html)（请用chrome的手机模式预览）
+[查看演示效果](https://erpang123.github.io/picker/time.html)（请用chrome的手机模式预览）
 
 # 使用方法
 通过new pricker(nav_list, data, h);实例化一个对象，传入三个参数分别：<br/>
