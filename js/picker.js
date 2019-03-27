@@ -1,11 +1,12 @@
-function pricker (dom, data, li_h) {
+function picker (dom, data, li_h) {
 	this.checkedDom = dom;
 	this.prickerDom = dom;
 	this.data = data || [0,1000,2000,3000,4000,5000,6000,8000,9000,10000,15000,20000,25000,30000,35000,40000,45000,50000,55000,60000,65000,70000];
 	this.li_h = li_h || 20;
 	this.showTime();
 }
-pricker.prototype.showTime = function () {
+/* 初始化数据 */
+picker.prototype.showTime = function () {
 	var data = this.data;
 	var _this = this.checkedDom;
 	var dom = this.prickerDom;
@@ -16,7 +17,7 @@ pricker.prototype.showTime = function () {
 	} else {
 		init_value = 0;
 	}
-	var li_info = [];//储存li的dom节点
+	var li_info = [];					//储存li的dom节点
 	var data_value = _this.getAttribute('data-value');
 	if (!data_value) {
 		data_value = data[0];
@@ -35,7 +36,6 @@ pricker.prototype.showTime = function () {
 	}
 	for(var l in data) {
 		if (l < (gold_i-3) || l > (parseInt(gold_i)+3)) {
-
 			li_info[l] = '<li class="li-height visible hide" style="transform: rotateX('+rtx+'deg) translateZ(100px);-webkit-transform: rotateX('+(-li_h)*l+'deg) translateZ(100px);">'+data[l]+'</li>'
 		}
 	}
@@ -50,7 +50,8 @@ pricker.prototype.showTime = function () {
 	dom.innerHTML = dom_text;
 	this.setTime();
 }
-pricker.prototype.setTime = function () {
+/* 滚动效果 */
+picker.prototype.setTime = function () {
 	var _that = this;
 	var parent = this.prickerDom;
 	var _this = this.checkedDom;
@@ -62,14 +63,14 @@ pricker.prototype.setTime = function () {
 	var li_h = this.li_h;		//旋转的角度间隔为20deg
 	var lis = parent.getElementsByClassName('time-list')[0].getElementsByTagName('li');
 	var ul_name = parent.getElementsByClassName('time-list')[0];
-	var firstmoveTime = 0;//按下是的时间
-	var lastmoveTime = 0;//移动的最后一帧的时间
-	var lastY = 0;//移动的最后一帧坐标
-	var golb_speed = 0;//移动的平均速度
+	var firstmoveTime = 0;		//按下是的时间
+	var lastmoveTime = 0;		//移动的最后一帧的时间
+	var lastY = 0;				//移动的最后一帧坐标
+	var golb_speed = 0;			//移动的平均速度
 	dom.addEventListener('touchstart',function(event){
 		dom_bool = true;
 		data_value = ul_name.getAttribute('data-value');
-		first_y = event.touches[0].clientY;//存储按下时的Y轴坐标
+		first_y = event.touches[0].clientY;			//存储按下时的Y轴坐标
 		firstmoveTime = event.timeStamp;
 		ul_name.style.transitionDuration = '0s';
 		ul_name.style.webkitTransitionDuration = '0s';
@@ -78,7 +79,7 @@ pricker.prototype.setTime = function () {
 		if (dom_bool && stopDown) {
 			removeClass();
 			lastmoveTime = event.timeStamp;
-			var Y = event.touches[0].clientY;//存储移动时的Y轴坐标
+			var Y = event.touches[0].clientY;		//存储移动时的Y轴坐标
 			lastY = Y;
 			var move_Y = parseInt(first_y - Y) + parseInt(data_value);
 			if (move_Y<-li_h*2) {
@@ -101,13 +102,13 @@ pricker.prototype.setTime = function () {
 			ul_name.setAttribute('data-value', move_Y);
 			event.preventDefault();
 		}
-	});
+	}, {passive: false});
 	document.addEventListener('touchend',function(e){
 		if(dom_bool && stopDown){
 			dom_bool = false;
 			stopDown = false
-			var speed = (lastY - first_y)/(lastmoveTime - firstmoveTime);//平均速度
-			if (Math.abs(speed) <= 0.4) {//根据不同的平均速度设置点触结束后的速度
+			var speed = (lastY - first_y)/(lastmoveTime - firstmoveTime);	//平均速度
+			if (Math.abs(speed) <= 0.4) {									//根据不同的平均速度设置点触结束后的速度
                 golb_speed = (speed < 0 ? -0.08 : 0.08);
             } else {
                 if (Math.abs(speed) <= 0.6) {
@@ -130,6 +131,7 @@ pricker.prototype.setTime = function () {
 		}
 	}
 	var t = 0;
+	// 弹性滚动
 	function rollGear (e) {
 		var d = 0;
 		var text = '';
@@ -149,7 +151,9 @@ pricker.prototype.setTime = function () {
 			if (Math.abs(speed) > 0.1) {
 				requestAnimationFrame(aa);
             } else {
-            	stopDown = true;
+            	setTimeout(function () {
+            		stopDown = true;
+            	}, 100)
                 ul_name.style.transitionDuration = '0.2s';
                 ul_name.style.webkitTransitionDuration = '0.2s';
 				if (i >= lis.length-1) {
@@ -187,7 +191,8 @@ pricker.prototype.setTime = function () {
 		requestAnimationFrame(aa);
 	}
 }
-pricker.prototype.showDom = function (i) {
+// 显示七个li，其他的隐藏
+picker.prototype.showDom = function (i) {
 	var parent = this.prickerDom;
 	var lis = parent.getElementsByClassName('time-list')[0].getElementsByTagName('li');
 	for (var k = 0; k < lis.length; k++) {
