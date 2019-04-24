@@ -65,7 +65,7 @@
   }
   // 无评论
   function nocomment () {
-    var html =  '<div class="no-info"><img src="./img/no-info.png"/><p>暂时没有评论哦，赶快来抢沙发吧</p></div>';
+    var html =  '<div class="no-info"><img src="https://www.91duobaoyu.com/res/src/images/app-to-c/pages-webView-index/no-info.png"/><p>暂时没有评论哦，赶快来抢沙发吧</p></div>';
     var dom = document.createElement('div');
     dom.innerHTML = html;
     dom.className = 'comment';
@@ -117,11 +117,29 @@
     dom.innerHTML = html;
     dom.className = 'comment comment-info';
     document.body.appendChild(dom);
+    // 点赞功能
+    var zanDoms = document.getElementsByClassName('user-zan')
+    if (zanDoms.length > 0) {
+      for(var zI = 0; zI < zanDoms.length; zI++) {
+        zanDoms[zI].onclick = (function (zI) {
+          return function () {
+            var oldZan = parseInt(event.target.innerText)
+            if (oldZan > 0) {
+              event.target.innerText = oldZan + 1
+            } else {
+              event.target.classList.remove('zan-default')
+              event.target.classList.add('zan-active')
+              event.target.innerText = 1
+            }
+          }
+        })(zI)
+      }
+    }
   }
   // 创建留言区域
   function createMessageArea() {
     var html = '<div class="reply-box"><div id="reply-in" class="reply-input"><input type="text" disabled placeholder="给我们留言以便互相交流哦"/></div><div class="share-icon">分享</div></div>' + 
-               '<div id="messArea" class="messArea"><h6>写留言<a id="t-close" class="close-btn"></a></h6>' + 
+               '<div id="messMask" class="messMask"></div><div id="messArea" class="messArea"><h6>写留言<a id="t-close" class="close-btn"></a></h6>' + 
                '<div class="mess-textarea"><textarea id="mes-textarea" placeholder="留言将由保鱼君筛选后显示，对所有人可见"></textarea></div>' + 
                '<a class="send-btn">发送</a></div>';
     var dom = document.createElement('div');
@@ -130,12 +148,14 @@
     document.body.appendChild(dom);
     // 隐藏留言界面
     document.getElementById('t-close').onclick = function () {
+      document.getElementById('messMask').style.display = 'none';
       document.getElementById('messArea').style.display = 'none';
     }
     // 点击输入框显示留言界面
     document.getElementById('reply-in').onclick = function () {
       document.getElementById('messArea').style.display = 'block';
-      document.getElementById('mes-textarea').focus()
+      document.getElementById('messMask').style.display = 'block';
+      document.getElementById('mes-textarea').focus();
     }
   }
   createMessageArea()
