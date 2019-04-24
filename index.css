@@ -11,7 +11,7 @@
   right: 15px;
   border-radius: 2px;
   background: #333141;
-  z-index: 1000;
+  z-index: 90;
 }
 .checkbox .the-t{
   position: absolute;
@@ -76,7 +76,7 @@
 .comment .no-info img{
   display: block;
   width: 78px;
-  height: 78px;
+  height: 78px !important;
   margin: 0 auto 30px;
 }
 .comment .no-info p{
@@ -129,7 +129,8 @@
   font-size: 14px;
   color: #6461FF;
   min-width: 16px;
-  min-height: 16px;
+  height: 16px;
+  line-height: 20px;
   box-sizing: border-box;
 }
 .comment .user-info .user-zan.zan-active{
@@ -149,6 +150,7 @@
   font-size: 14px;
   color: #141432;
   padding: 0 12px;
+  margin-bottom: 4px;
 }
 .comment .reply-list .name{
   color: #6461FF;
@@ -201,6 +203,16 @@
   background-size: contain;
 }
 /* 留言 */
+.messMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
 .messArea{
   background: #fff;
   padding: 20px 0 52px 0;
@@ -210,7 +222,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 3;
   display: none;
 }
 .messArea h6{
