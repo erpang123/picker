@@ -2,7 +2,7 @@
   color: #338DE6 !important;
 }
 .checkText {
-  color: #fff;
+  color: #fff !important;
   background: #338DE6;
 }
 .checkbox{
