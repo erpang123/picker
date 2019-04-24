@@ -81,46 +81,7 @@
   font-size: 14px;
   color: #666;
 }
-.comment .reply-box{
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  z-index: 1000;
-  padding: 0 15px;
-}
-.comment .reply-box .reply-input{
-  flex: 1;
-  margin-right: 16px;
-  border-radius: 18px;
-  background: #f0f0f0;
-}
-.comment .reply-box .reply-input input{
-  width: 100%;
-  height: 35px;
-  padding: 8px 0 8px 12px;
-  height: 35px;
-  box-sizing: border-box;
-  border-width: 0;
-  background: transparent;
-  outline: 0;
-}
-.comment .reply-box .share-icon{
-  width: 24px;
-  padding-top: 24px;
-  font-size: 10px;
-  color: #666;
-  flex-shrink: 0;
-  white-space: nowrap;
-  background: url(./img/share-icon.png) center top no-repeat;
-  background-size: contain;
-}
-.comment-info{
+.comment.comment-info{
   padding: 0 15px;
 }
 .comment h6{
@@ -188,4 +149,108 @@
 }
 .comment .reply-list .name{
   color: #6461FF;
+}
+/* 回复区域 */
+.message-box{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+.reply-box{
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 1;
+  padding: 0 15px;
+}
+.reply-box .reply-input{
+  flex: 1;
+  margin-right: 16px;
+  border-radius: 18px;
+  background: #f0f0f0;
+}
+.reply-box .reply-input input{
+  width: 100%;
+  height: 35px;
+  padding: 8px 0 8px 12px;
+  height: 35px;
+  box-sizing: border-box;
+  border-width: 0;
+  background: transparent;
+  outline: 0;
+}
+.reply-box .share-icon{
+  width: 24px;
+  padding-top: 24px;
+  font-size: 10px;
+  color: #666;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background: url(./img/share-icon.png) center top no-repeat;
+  background-size: contain;
+}
+/* 留言 */
+.messArea{
+  background: #fff;
+  padding: 20px 0 52px 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: none;
+}
+.messArea h6{
+  position: relative;
+  padding: 0 39px 0 15px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #3B3B3B;
+}
+.messArea h6 .close-btn{
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: url(./img/black-close.png) center no-repeat;
+  background-size: contain;
+  top: 50%;
+  right: 16px;
+  margin-top: -12px;
+}
+.messArea .mess-textarea{
+  margin: 0 15px;
+}
+.messArea textarea{
+  border: 0;
+  outline: 0;
+  display: block;
+  width: 100%;
+  height: 77px;
+  box-sizing: border-box;
+  padding: 10px 4px;
+  background: #F3F3F5;
+  border-radius: 2px;
+}
+.messArea .send-btn{
+  position: absolute;
+  bottom: 12px;
+  right: 15px;
+  width: 52px;
+  height: 28px;
+  line-height: 28px;
+  background: #6461FF;
+  border-radius: 14px;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
 }
