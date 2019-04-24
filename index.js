@@ -1,7 +1,7 @@
 (function () {
   // 获取所有字段元素，绑定事件
-  var b = document.getElementsByClassName('check-keyword')
-  var text,top,left
+  var b = document.getElementsByClassName('check-keyword');
+  var text,top,left;
   if (b.length > 0) {
     for (var i = 0; i < b.length; i++) {
       b[i].onclick=(function (i) {
@@ -65,50 +65,80 @@
   }
   // 无评论
   function nocomment () {
-    var html =  '<div class="no-info"><img src="./img/no-info.png"/><p>暂时没有评论哦，赶快来抢沙发吧</p></div>' + 
-                '<div class="reply-box"><div class="reply-input"><input type="text" placeholder="给我们留言以便互相交流哦"/></div><div class="share-icon">分享</div></div>'
-    var dom = document.createElement('div')
-    dom.innerHTML = html
-    dom.className = 'comment'
-    document.body.appendChild(dom)
+    var html =  '<div class="no-info"><img src="./img/no-info.png"/><p>暂时没有评论哦，赶快来抢沙发吧</p></div>';
+    var dom = document.createElement('div');
+    dom.innerHTML = html;
+    dom.className = 'comment';
+    document.body.appendChild(dom);
   }
   // 有评论
   function createCommentList () {
-    var html =  '<h6>精选留言·40</h6>' + 
-                '<div class="info-lists">' + 
-                  '<div class="info-list">' + 
-                    '<div class="user-info">' + 
-                      '<div class="user-head">' + 
-                        '<img class="head-img" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1062675657,2502206893&fm=26&gp=0.jpg"/>' + 
-                        '<span>图图</span>' + 
-                      '</div>' + 
-                      '<div class="user-zan zan-active">2</div>' + 
-                    '</div>' + 
-                    '<div class="com-info">感谢保鱼君！说实话，关注有一阵子了，年前母亲患癌去世，才猛然感受到生命的脆弱！看了您很多的文章，着实有用！</div>' + 
-                    '<div class="reply-lists">' +
-                      '<div class="reply-list"><span class="name">保鱼君回复：</span></span>感谢您的支持，我们会继续为你们产出精选文章</span></div>' + 
-                    '</div>' + 
-                  '</div>' + 
-                  '<div class="info-list">' + 
-                    '<div class="user-info">' + 
-                      '<div class="user-head">' + 
-                        '<img class="head-img" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1062675657,2502206893&fm=26&gp=0.jpg"/>' + 
-                        '<span>图图</span>' + 
-                      '</div>' + 
-                      '<div class="user-zan zan-default"></div>' + 
-                    '</div>' + 
-                    '<div class="com-info">感谢保鱼君！说实话，关注有一阵子了，年前母亲患癌去世，才猛然感受到生命的脆弱！看了您很多的文章，着实有用！</div>' + 
-                    '<div class="reply-lists">' +
-                      '<div class="reply-list"><span class="name">保鱼君回复：</span></span>感谢您的支持，我们会继续为你们产出精选文章</span></div>' + 
-                    '</div>' + 
-                  '</div>' + 
-                '</div>' + 
-                '<div class="reply-box"><div class="reply-input"><input type="text" placeholder="给我们留言以便互相交流哦"/></div><div class="share-icon">分享</div></div>'
-    var dom = document.createElement('div')
-    dom.innerHTML = html
-    dom.className = 'comment comment-info'
-    document.body.appendChild(dom)
+    var replyList = [{
+      name: '图图',
+      zanMath: 2,
+      imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1062675657,2502206893&fm=26&gp=0.jpg',
+      content: '感谢保鱼君！说实话，关注有一阵子了，年前母亲患癌去世，才猛然感受到生命的脆弱！看了您很多的文章，着实有用！',
+      replyList: [{
+        name: '保鱼君',
+        content: '感谢您的支持，我们会继续为你们产出精选文章'
+      }, {
+        name: '保鱼君',
+        content: '感谢您的支持，我们会继续为你们产出精选文章'
+      }]
+    }, {
+      name: '图图',
+      zanMath: 0,
+      imgUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1062675657,2502206893&fm=26&gp=0.jpg',
+      content: '感谢保鱼君！说实话，关注有一阵子了，年前母亲患癌去世，才猛然感受到生命的脆弱！看了您很多的文章，着实有用！',
+      replyList: []
+    }]
+    var html =  '<h6>精选留言·40</h6><div class="info-lists">'
+    replyList.forEach(function (el) {
+      html = html + '<div class="info-list">' + 
+                      '<div class="user-info">' + 
+                        '<div class="user-head">' + 
+                          '<img class="head-img" src="'+ el.imgUrl +'"/>' + 
+                          '<span>' + el.name + '</span>' + 
+                        '</div>'
+      if (el.zanMath > 0) {
+        html = html + '<div class="user-zan zan-active">' + el.zanMath + '</div>' 
+      } else {
+        html = html + '<div class="user-zan zan-default"></div>' 
+      }
+      html = html + '</div>' + 
+                    '<div class="com-info">' + el.content + '</div>' + 
+                    '<div class="reply-lists">'
+      el.replyList.forEach(function(obj) {
+        html = html + '<div class="reply-list"><span class="name">'+ obj.name +'回复：</span><span>' + obj.content + '</span></div>'
+      })
+      html = html + '</div></div>';
+    })
+    var dom = document.createElement('div');
+    dom.innerHTML = html;
+    dom.className = 'comment comment-info';
+    document.body.appendChild(dom);
   }
+  // 创建留言区域
+  function createMessageArea() {
+    var html = '<div class="reply-box"><div id="reply-in" class="reply-input"><input type="text" disabled placeholder="给我们留言以便互相交流哦"/></div><div class="share-icon">分享</div></div>' + 
+               '<div id="messArea" class="messArea"><h6>写留言<a id="t-close" class="close-btn"></a></h6>' + 
+               '<div class="mess-textarea"><textarea id="mes-textarea" placeholder="留言将由保鱼君筛选后显示，对所有人可见"></textarea></div>' + 
+               '<a class="send-btn">发送</a></div>';
+    var dom = document.createElement('div');
+    dom.className = 'message-box';
+    dom.innerHTML = html;
+    document.body.appendChild(dom);
+    // 隐藏留言界面
+    document.getElementById('t-close').onclick = function () {
+      document.getElementById('messArea').style.display = 'none';
+    }
+    // 点击输入框显示留言界面
+    document.getElementById('reply-in').onclick = function () {
+      document.getElementById('messArea').style.display = 'block';
+      document.getElementById('mes-textarea').focus()
+    }
+  }
+  createMessageArea()
   // 判断是否有评论列表
   var hasBool = false
   if (!hasBool) {
