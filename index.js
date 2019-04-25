@@ -24,7 +24,6 @@
           for (var j = 0; j < b.length; j++){
             b[j].classList.remove('checkText')
           }
-          event.preventdefault()
           // 设置选中的样式
           b[i].classList.add('checkText')
           createHtml('指由保险公司经办的以特定重大疾病，如恶性肿瘤、心肌梗死、脑溢血等为保险对象，当被保人患有上述疾病时，由保险公司根据保险合。')
