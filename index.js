@@ -165,7 +165,7 @@
     }
     document.getElementById('consult-btn').onclick=function () {
       uni.navigateTo({
-        url: "pages/insuranceClass/conSult/index"
+        url: "/pages/insuranceClass/conSult/index"
       }) 
     }
   }
