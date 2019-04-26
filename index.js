@@ -169,11 +169,17 @@
   // 新增uni.webview.js
   var newScript = document.createElement('script')
   newScript.type = 'text/javascript'
-  newScript.src = 'https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js'
+  newScript.src = 'https://www.91duobaoyu.com/res/src/js/jweixin-1.3.2.js'
   document.body.appendChild(newScript)
   newScript.onload = function () {
-    uni.navigateTo({
-      url: "/pages/insuranceClass/dictionariesDetail/index?value=投保人"
-    })
+    var newScript1 = document.createElement('script')
+    newScript1.type = 'text/javascript'
+    newScript1.src = 'https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js'
+    document.body.appendChild(newScript1)
+    newScript1.onload = function () {
+      uni.navigateTo({
+        url: "/pages/insuranceClass/dictionariesDetail/index?value=投保人"
+      })
+    }
   }
 })();
