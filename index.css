@@ -202,6 +202,23 @@
   background: url(./img/share-icon.png) center top no-repeat;
   background-size: contain;
 }
+.message-box .consult-btn{
+  position: fixed;
+  right: 15px;
+  bottom: 76px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  padding-top: 36px;
+  background: url(../images/app-to-c/pages-webView-index/consult.png) center 10px no-repeat #fff;
+  background-size: 24px;
+  text-align: center;
+  font-size: 10px;
+  color: #141432;
+  box-shadow: 0 1px 4px #545154;
+  z-index: 100;
+}
 /* 留言 */
 .messMask{
   position: fixed;
