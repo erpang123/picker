@@ -177,9 +177,12 @@
     newScript1.src = 'https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js'
     document.body.appendChild(newScript1)
     newScript1.onload = function () {
-      uni.navigateTo({
-        url: "/pages/insuranceClass/dictionariesDetail/index?value=投保人"
-      })
+      document.getElementsByClassName('more-info')[0].onclick=function () {
+        var text = document.getElementById('checkbox').getElementsByTagName('h5')[0].innerText
+        uni.navigateTo({
+          url: "/pages/insuranceClass/dictionariesDetail/index?value=" + text
+        }) 
+      }
     }
   }
 })();
