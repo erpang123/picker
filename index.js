@@ -147,7 +147,7 @@
     var html = '<div class="reply-box"><div id="reply-in" class="reply-input"><input type="text" disabled placeholder="给我们留言以便互相交流哦"/></div><div class="share-icon">分享</div></div>' + 
                '<div id="messMask" class="messMask"></div><div id="messArea" class="messArea"><h6>写留言<a id="t-close" class="close-btn"></a></h6>' + 
                '<div class="mess-textarea"><textarea id="mes-textarea" placeholder="留言将由保鱼君筛选后显示，对所有人可见"></textarea></div>' + 
-               '<a class="send-btn">发送</a></div>';
+               '<a class="send-btn">发送</a></div><div class="consult-btn" id="consult-btn">咨询</div>';
     var dom = document.createElement('div');
     dom.className = 'message-box';
     dom.innerHTML = html;
@@ -162,6 +162,11 @@
       document.getElementById('messArea').style.display = 'block';
       document.getElementById('messMask').style.display = 'block';
       document.getElementById('mes-textarea').focus();
+    }
+    document.getElementById('consult-btn').onclick=function () {
+      uni.navigateTo({
+        url: "pages/insuranceClass/conSult/index"
+      }) 
     }
   }
   createMessageArea()
