@@ -172,11 +172,8 @@
   newScript.src = 'https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js'
   document.body.appendChild(newScript)
   newScript.onload = function () {
-    $(document).on('click', '.more-info', function () {
-      var ite = $(this).siblings('h5').text()
-      uni.navigateTo({
-        url: "/pages/insuranceClass/dictionariesDetail/index?value=" + ite
-      })
-    });
+    uni.navigateTo({
+      url: "/pages/insuranceClass/dictionariesDetail/index?value=投保人"
+    })
   }
 })();
