@@ -240,7 +240,7 @@
     if (needGuide) {
       return
     }
-    var html = '<div class="guideImg"><img src="./images/app-to-c/pages-webView-index/guide-img.png"/><a class="know-btn">知道了</a></div>';
+    var html = '<div class="guideImg"><img src="https://www.91duobaoyu.com/res/src/images/app-to-c/pages-webView-index/guide-img.png"/><a class="know-btn">知道了</a></div>';
     var dom = document.createElement('div')
     dom.className = 'guideMask'
     dom.innerHTML = html
