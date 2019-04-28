@@ -18,7 +18,9 @@
   width: 10px;
   height: 10px;
   background: #333141;
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
   top: -5px;
   left: 60px;
 }
@@ -29,7 +31,8 @@
   position: relative;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
 }
 .checkbox .close-btn{
   position: absolute;
@@ -52,9 +55,18 @@
   background: #474654;
   color: #fff;
   font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
   height: 48px;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -96,23 +108,42 @@
   margin-bottom: 88px;
 }
 .comment .info-list{
-  margin-bottom: 44px;
+  margin-bottom: 30px;
 }
 .comment .user-info{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
   margin-bottom: 12px;
 }
 .comment .user-info .user-head{
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          -webkit-flex: 1;
+          flex: 1;
   overflow: hidden;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
 }
 .comment .user-info .user-head span{
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          -webkit-flex: 1;
+          flex: 1;
   font-size: 14px;
   color: #666;
 }
@@ -120,7 +151,9 @@
   width: 40px;
   height: 40px;
   display: block;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      -webkit-flex-shrink: 0;
+          flex-shrink: 0;
   margin-right: 13px;
   border-radius: 50%;
 }
@@ -131,7 +164,8 @@
   min-width: 16px;
   height: 16px;
   line-height: 20px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .comment .user-info .user-zan.zan-active{
   background: url(./img/zan-icon.png) right center no-repeat;
@@ -144,13 +178,27 @@
 .comment .com-info {
   font-size: 14px;
   color: #141432;
-  margin-bottom: 24px;
+  margin-bottom: 5px;
 }
 .comment .reply-list{
   font-size: 14px;
   color: #141432;
-  padding: 0 12px;
-  margin-bottom: 4px;
+  padding: 13px 12px;
+  margin-top: 10px;
+  background: #F3F3F5;
+  position: relative;
+}
+.comment .reply-list::after{
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #F3F3F5;
+  top: -5px;
+  left: 16px;
+  -webkit-transform: rotateZ(45deg);
+          -ms-transform: rotate(45deg);
+      transform: rotateZ(45deg);
 }
 .comment .reply-list .name{
   color: #6461FF;
@@ -165,9 +213,18 @@
 }
 .reply-box{
   height: 52px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -177,8 +234,10 @@
   padding: 0 15px;
 }
 .reply-box .reply-input{
-  flex: 1;
-  margin-right: 16px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          -webkit-flex: 1;
+          flex: 1;
   border-radius: 18px;
   background: #f0f0f0;
 }
@@ -187,7 +246,8 @@
   height: 35px;
   padding: 8px 0 8px 12px;
   height: 35px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-width: 0;
   background: transparent;
   outline: 0;
@@ -197,7 +257,9 @@
   padding-top: 24px;
   font-size: 10px;
   color: #666;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      -webkit-flex-shrink: 0;
+          flex-shrink: 0;
   white-space: nowrap;
   background: url(./img/share-icon.png) center top no-repeat;
   background-size: contain;
@@ -209,15 +271,17 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding-top: 36px;
   background: url(./img/consult.png) center 10px no-repeat #fff;
   background-size: 24px;
   text-align: center;
   font-size: 10px;
   color: #141432;
-  box-shadow: 0 1px 4px #545154;
-  z-index: 100;
+  -webkit-box-shadow: 0 1px 4px #545154;
+          box-shadow: 0 1px 4px #545154;
+  z-index: 1;
 }
 /* 留言 */
 .messMask{
@@ -268,7 +332,8 @@
   display: block;
   width: 100%;
   height: 77px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 10px 4px;
   background: #F3F3F5;
   border-radius: 2px;
@@ -285,4 +350,34 @@
   text-align: center;
   color: #fff;
   font-size: 14px;
+}
+/* 引导层 */
+.guideMask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+}
+.guideMask .guideImg{
+  margin: 106px 27px 0;
+}
+.guideMask img{
+  display: block;
+  width: 100%;
+}
+.guideMask .know-btn{
+  display: block;
+  width: 120px;
+  height: 44px;
+  line-height: 44px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 22px;
+  margin: 70px auto 0;
 }
