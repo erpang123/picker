@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>better-scroll</title>
+    <style>
+        .mb-10{
+            margin-bottom: 10px;
+        }
+        .down-img{
+            height: 200px;
+        }
+        .down-img a{
+            display: block;
+            height: 100%;
+        }
+        .down-img img{
+            display: block;
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .down-btn{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: #65a8ef;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="down-img mb-10">
+        <a id="downImg" href="https://filebuck.oss-cn-hangzhou.aliyuncs.com/friendMaterial/18/no-info.png" download="no-info.png">
+            <img src="https://filebuck.oss-cn-hangzhou.aliyuncs.com/friendMaterial/18/no-info.png"/>
+        </a>
+    </div>
+    <div class="down-btn mb-10" onclick="downImage()">下载图片1</div>
+    <div class="down-img mb-10">
+        <img src="https://filebuck.oss-cn-hangzhou.aliyuncs.com/friendMaterial/23/15BPafa.png"/>
+    </div>
+    <div class="down-btn" onclick="downimage2()">下载图片2</div>
+    <script src="./FileSaver.min.js"></script>
+    <script>
+        function downImage () {
+            document.getElementById('downImg').click()
+        }
+        function downimage2 () {
+            saveAs('https://filebuck.oss-cn-hangzhou.aliyuncs.com/friendMaterial/23/15BPafa.png', "15BPafa.png");
+        }
+    </script>
+</body>
+</html>
