@@ -1,6 +1,5 @@
 var cacheStoageKey = 'minimal-pwa-3'
 var cacheList = [
-    '../',
     '../servie.html',
     '../css/service.css'
 ]
